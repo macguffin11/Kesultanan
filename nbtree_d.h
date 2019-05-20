@@ -63,4 +63,13 @@ void nbLevelOrder(nbAddr root,int curLevel, int desLevel); // Levelorder travers
 /* ---------------- PRINT TREE ---------------- */
 void nbPrint(nbAddr node, char tab[]);
 
+/* ---------------- TRAVERSAL Tree ---------------- */
+//void nama_modul(); // Fungsi
+
+//void nama_modul(); // Fungsi
+
+//void nama_modul(); // Fungsi
+
+//void nama_modul(); // Fungsi
+
 #endif
