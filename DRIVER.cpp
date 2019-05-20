@@ -28,6 +28,7 @@ int main(){
 	nbInsert(&MyList,nbSearch(MyList.root,97),25);
 	nbInsert(&MyList,nbSearch(MyList.root,97),10);
 	
+	
 	//Print Root & Depth
 	Print_R_D();
 	
