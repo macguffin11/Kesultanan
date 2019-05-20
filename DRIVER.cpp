@@ -15,19 +15,15 @@ int main(){
 	nbCreate(&MyList);
 	
 	//Create Root
-	nbInsert(&MyList,nbSearch(MyList.root,0),13);
-	nbInsert(&MyList,nbSearch(MyList.root,13),1);
-	nbInsert(&MyList,nbSearch(MyList.root,13),8);
-	nbInsert(&MyList,nbSearch(MyList.root,13),97);
-	nbInsert(&MyList,nbSearch(MyList.root,1),26);
-	nbInsert(&MyList,nbSearch(MyList.root,1),4);
-	nbInsert(&MyList,nbSearch(MyList.root,4),5);
-	nbInsert(&MyList,nbSearch(MyList.root,4),6);
-	nbInsert(&MyList,nbSearch(MyList.root,4),7);
-	nbInsert(&MyList,nbSearch(MyList.root,97),24);
-	nbInsert(&MyList,nbSearch(MyList.root,97),25);
-	nbInsert(&MyList,nbSearch(MyList.root,97),10);
-	
+	nbInsert(&MyList,nbSearch(MyList.root,"RM Ibnu Jarot"), "RM Ibnu Jarot", 'L', 35);		//HB IV
+	nbInsert(&MyList,nbSearch(MyList.root,"RM Ibnu Jarot"), "RM Gathot Menol", 'L', 35);	//HB V		//First Son HB IV
+	nbInsert(&MyList,nbSearch(MyList.root,"RM Gathot Menol"), "RM Gusti Timur", 'L', 5);				//First Son HB V
+	nbInsert(&MyList,nbSearch(MyList.root,"RM Ibnu Jarot"), "RM Mustojo", 'L', 35);			//HB VI		//Next Brother HB V
+	nbInsert(&MyList,nbSearch(MyList.root,"RM Mustojo"), "RM Murtejo", 'L', 35);			//HB VII	//!First Son HB VI
+	nbInsert(&MyList,nbSearch(MyList.root,"RM Murtejo"), "RM Sujadi", 'L', 35);				//HB VIII	//!First Son HB VII
+	nbInsert(&MyList,nbSearch(MyList.root,"RM Murtejo"), "RM Prawoto", 'L', 35);						//!First Son HB VII
+	nbInsert(&MyList,nbSearch(MyList.root,"RM Murtejo"), "RA Murharidah", 'P', 35);						//!First Son HB VII
+	nbInsert(&MyList,nbSearch(MyList.root,"RM Murtejo"), "RA Condroprojo", 'L', 35);					//!First Son HB VII
 	
 	//Print Root & Depth
 	Print_R_D();
