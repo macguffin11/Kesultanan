@@ -33,11 +33,11 @@ void nbCreate(nbTree *x);
 //Membuat tree kosong (X.root=NULL)
 
 /* ---------------- Alokasi node baru Tree ---------------- */
-nbAddr nbCNode(char X[], char jk, int u);
+nbAddr nbCNode(nbType Bio);
 //Alokasi untuk membuat node baru
 
 /* ---------------- Operasi-operasi Tree ---------------- */
-void nbInsert(nbTree *tRoot, nbAddr parent, char X[], char jk, int u);
+void nbInsert(nbTree *tRoot, nbAddr parent, nbType Bio);
 // Menambah element pada node parent
 
 nbAddr nbSearch(nbAddr root, char src[]);

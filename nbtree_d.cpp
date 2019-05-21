@@ -6,13 +6,13 @@ void nbCreate(nbTree *x){
 	(*x).root=NULL;
 }
 
-nbAddr nbCNode(char X[], char jk, int u){
+nbAddr nbCNode(nbType Bio){
 	nbAddr newNode;
 	newNode=(nbAddr) malloc(sizeof(ElmtTree));
 	if (newNode != NULL){
-		strcpy(newNode->info.nama,X);
-		newNode->info.jk=jk;
-		newNode->info.usia=u;
+		strcpy(newNode->info.nama,Bio.nama);
+		newNode->info.jk=Bio.jk;
+		newNode->info.usia=Bio.usia;
 		newNode->parent=NULL;
 		newNode->fs=NULL;
 		newNode->nb=NULL;
@@ -20,11 +20,11 @@ nbAddr nbCNode(char X[], char jk, int u){
 	return newNode;
 }
 
-void nbInsert(nbTree *tRoot, nbAddr parent, char X[], char jk, int u){
+void nbInsert(nbTree *tRoot, nbAddr parent, nbType Bio){
 	
 	nbAddr newNode, temp;
 	
-	newNode=nbCNode(X, jk, u);
+	newNode=nbCNode(Bio);
 	if (newNode !=NULL){ //Jika penciptaan node baru berhasil
 		if (parent==NULL) //JIka belum terdapat root
 			tRoot->root=newNode;
