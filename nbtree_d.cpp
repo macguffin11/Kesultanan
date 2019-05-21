@@ -108,7 +108,7 @@ void nbDelete(nbAddr *pDel, nbTree *pTree){
 
 void delete_node(nbTree *pTree){
 	
-	nbAddr pdel, temp, tempNb;
+	nbAddr pdel, temp, temp2, tempNb;
 	pdel=pTree->root;
 	nbType value;
 	int i=0;
@@ -120,32 +120,15 @@ void delete_node(nbTree *pTree){
 		if(pdel->fs != NULL){
 			temp = pdel;
 			while(temp->fs != NULL){
-				temp->info = temp->fs->info;
-				if(temp->fs->nb != NULL){
-					tempNb=temp->fs->nb;
-					//temp=temp->fs;
-					
-				}
+				temp->info.nama = temp->fs->info.nama;
+				tempNb=temp->fs->nb;
+				temp2 = temp;
 				temp=temp->fs;
-				temp->nb=tempNb;
-				
-				if (pdel->fs->info==pdel->info){
-					pdel->fs=tempNb;
-					
-					tempNb=pdel->fs;
-					while(tempNb->nb!=NULL){
-						tempNb=tempNb->nb;
-					}
-					
-					if(temp->fs!=NULL)
-						tempNb->nb=temp;
-					
-					pdel = temp;
-					temp->nb = NULL;
-				}
-				
 			}
-			
+			temp2->fs=tempNb;
+			temp->nb=NULL;
+			temp->parent=NULL;
+			pdel = temp;
 		}
 		else if(pdel->fs==NULL){
 			temp=pdel->parent;
