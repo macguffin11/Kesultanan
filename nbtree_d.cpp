@@ -185,7 +185,7 @@ int nbDepth(nbAddr root)
 void nbPost(nbAddr root){
 	if (root!=NULL){
 		nbPost(root->fs);
-		printf("%s ", root->info.nama);
+		printf("[%s] ", root->info.nama);
 		nbPost(root->nb);
 	}
 /*
@@ -214,7 +214,7 @@ nbAddr pCur;
 
 void nbPre(nbAddr root){
 	if (root!=NULL){
-		printf("%s ", root->info.nama);
+		printf("[%s] ", root->info.nama);
 		nbPre(root->fs);
 		nbPre(root->nb);
 	}
@@ -247,10 +247,10 @@ nbAddr pCur;
 void nbIn(nbAddr root){
 	if (root!=NULL){
 		nbIn(root->fs);
-		if (root->fs==NULL) printf("%s ", root->info.nama);
+		if (root->fs==NULL) printf("[%s] ", root->info.nama);
 		if (root->parent !=NULL)
 			if (root->parent->fs==root)
-				printf("%s ", root->parent->info.nama);
+				printf("[%s] ", root->parent->info.nama);
 		nbIn(root->nb);
 	}
 
@@ -288,7 +288,7 @@ void nbLevelOrder(nbAddr root,int curLevel, int desLevel)
 	if(root!=NULL)
 	{
 		if(curLevel==desLevel)
-			printf("%s  ",root->info.nama);
+			printf("[%s]  ",root->info.nama);
 		nbLevelOrder(root->fs,curLevel+1,desLevel);
 		nbLevelOrder(root->nb,curLevel,desLevel);
 	}
@@ -299,7 +299,7 @@ void nbPrint(nbAddr node, char tab[]){
 	strcpy(tempTab, tab);
 	strcat(tempTab, "-");
 	if (node!=NULL){
-		printf("%s %s\n",tab,node->info.nama);
+		printf("%s [%s]\n",tab,node->info.nama);
 		nbPrint(node->fs,tempTab);
 		nbPrint(node->nb,tab);
 	}
@@ -353,7 +353,7 @@ void nbOpenFile(nbTree& List){
 	
 	while (fread(&dt_tree, sizeof(nbFile), 1, dt_tr) == 1)
 	{
-		nbInsert(&List,nbSearch(List.root,dt_tree.parent), dt_tree.son.nama, dt_tree.son.jk, dt_tree.son.usia);
+		nbInsert(&List,nbSearch(List.root,dt_tree.parent), dt_tree.son);
 	}
 	fclose(dt_tr);
 }

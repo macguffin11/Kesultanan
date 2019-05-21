@@ -19,8 +19,14 @@ int main(){
 	printf("\t\tLuthfi Alri		(181511021)\n\n");
 	printf("SILSILAH KESULTANAN YOGYAKARTA\n\n");
 	
-	//ALLOC
-	nbCreate(&MyList);
+	
+	if (MyList.root == NULL){
+		//ALLOC
+		nbCreate(&MyList);
+		//OPEN FILE
+		nbOpenFile(MyList);
+		printf("test");
+	}
 	
 	//MENU
 	printf("PROGRAM MENU\n");
@@ -29,7 +35,7 @@ int main(){
 	printf("3. Tampilkan Silsilah Keluarga\n");
 	printf("4. Tampilkan Silsilah Kesultanan\n");
 	printf("5. Traversal Non Binary Tree\n");
-	printf("5. Exit\n");
+	printf("6. Exit\n");
 	printf("Pilihan	:"); scanf("%d", &menu);
 	switch(menu){
 		case 1 : {
@@ -48,10 +54,12 @@ int main(){
 			Input :
 			printf("\nInput Element Tree\n");
 			printf("Nama	:"); fflush(stdin); scanf("%[^\n]s", &New.nama);
-			printf("JK	:"); 	 fflush(stdin); scanf("%[^\n]s", &New.jk);
+			printf("JK	:"); 	 fflush(stdin); scanf("%c", &New.jk);
 			printf("Usia	:"); scanf("%d", &New.usia);
 			printf("Parent	:"); fflush(stdin); scanf("%[^\n]s", &Parent);
-			nbInsert(&MyList, nbSearch(MyList.root, Parent), New);
+			nbInsert(&MyList, nbSearch(MyList.root, Parent), New);	
+			nbPrint(MyList.root, " ");
+			
 			
 			printf("\nInput Element Tree Lagi ? (1 = Ya, 2 = Kembali ke Menu)\n");
 			scanf("%d", &pilih);
@@ -71,8 +79,8 @@ int main(){
 		}
 		case 3 : {	
 			system("cls");
-			printf("===Silsilah Keluarga=== (Jumlah '-' menyatakan level)\n");	
-			printf("\nDEPTH: %d\n", nbDepth(MyList.root));
+			printf("===Silsilah Keluarga=== \n(Jumlah '-' menyatakan level)\n");
+			printf("\nDEPTH: %d\n\n", nbDepth(MyList.root));
 			nbPrint(MyList.root, " ");
 			system("pause");
 			system("cls");
@@ -80,8 +88,8 @@ int main(){
 		}
 		case 4 : {
 			system("cls");
-			printf("===Silsilah Kesultanan=== (Jumlah '-' menyatakan level)\n");
-			printf("\nDEPTH: %d\n", nbDepth(MyList.root));	
+			printf("===Silsilah Kesultanan=== \n(Jumlah '-' menyatakan level)\n");
+			printf("\nDEPTH: %d\n\n", nbDepth(MyList.root));	
 			nbPrint(MyList.root, " ");
 			system("pause");
 			system("cls");
@@ -90,41 +98,20 @@ int main(){
 		case 5 : {
 			printf("\nPost Order : ");
 			nbPost(MyList.root);
-			printf("\nPre Order : ");
+			printf("\n\nPre Order : ");
 			nbPre(MyList.root);
-			printf("\nIn Order : ");
+			printf("\n\nIn Order : ");
 			nbIn(MyList.root);
 			system("pause");
 			system("cls");
 			break;
 		}
 		case 6 : {
+			nbCreateFile(MyList.root);
 			exit(0);
 			break;
 		}
 	}
 	
-	
-	//Selection
-	printf("\nMENU");
-	printf("\n(1) Lakukan Delete lagi \n(2) Kembalikan Tree ke Kondisi Awal \n(3) Menu");
-	scanf("%d", &pilih);
-	switch(pilih){
-		case 1 :{
-			delete_node(&MyList);
-			break;
-		}
-		case 2 :{
-			system("cls");
-			return main();
-			break;
-		}
-		case 3 :{
-			return main();
-			break;
-		}
-	}
-	
-	
-	return 0;
+	return main();
 }
