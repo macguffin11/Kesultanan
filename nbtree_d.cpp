@@ -305,10 +305,67 @@ void nbPrint(nbAddr node, char tab[]){
 	}
 }
 
-void nbCreateFile(){
+void nbCreateFile(nbAddr root){
+	nbAddr pCur;
+	FILE *dt_tr;
+	nbFile dt_tree;
+	bool arah;
+	arah=0;
 	
+	if ((dt_tr=fopen("File_Tree.DAT", "wb+"))==NULL)
+	{
+		printf ("File tidak dapat dibuka\n");
+		exit(1);
+	}
+
+	pCur=root;
+	structcpy(dt_tree, pCur);
+	fwrite(&dt_tree, sizeof(nbFile), 1, dt_tr);
+	do{
+		if(pCur->fs!=NULL && arah==0){
+			pCur=pCur->fs;
+			structcpy(dt_tree, pCur);
+			fwrite(&dt_tree, sizeof(nbFile), 1, dt_tr);
+		}else{
+			arah=0;
+			if (pCur->nb!= NULL){
+				pCur=pCur->nb;
+				structcpy(dt_tree, pCur);
+				fwrite(&dt_tree, sizeof(nbFile), 1, dt_tr);
+			}else{
+				pCur=pCur->parent;
+				arah=1;
+			}
+		}
+	}while(pCur!=NULL);
+	fclose(dt_tr);
 }
 
-void nbOpenFile(){
+void nbOpenFile(nbTree& List){
+	FILE *dt_tr;
+	nbFile dt_tree;
 	
+	if ((dt_tr=fopen("File_Tree.DAT", "rb"))==NULL)
+	{
+		printf ("File tidak dapat dibuka\n");
+		exit(1);
+	}
+	
+	while (fread(&dt_tree, sizeof(nbFile), 1, dt_tr) == 1)
+	{
+		nbInsert(&List,nbSearch(List.root,dt_tree.parent), dt_tree.son.nama, dt_tree.son.jk, dt_tree.son.usia);
+	}
+	fclose(dt_tr);
+}
+
+void structcpy(nbFile& x, nbAddr pcur){
+	x.son.jk = pcur->info.jk;
+	x.son.usia = pcur->info.usia;
+	strcpy(x.son.nama,pcur->info.nama);
+	
+	if (pcur->parent != NULL){
+		strcpy(x.parent,pcur->parent->info.nama);
+	}else{
+		strcpy(x.parent,pcur->info.nama);
+	}
 }
