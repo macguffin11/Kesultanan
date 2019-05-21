@@ -33,14 +33,14 @@ void nbCreate(nbTree *x);
 //Membuat tree kosong (X.root=NULL)
 
 /* ---------------- Alokasi node baru Tree ---------------- */
-nbAddr nbCNode(nbType X);
+nbAddr nbCNode(char X[], char jk, int u);
 //Alokasi untuk membuat node baru
 
 /* ---------------- Operasi-operasi Tree ---------------- */
-void nbInsert(nbTree *tRoot, nbAddr parent, nbType X);
+void nbInsert(nbTree *tRoot, nbAddr parent, char X[], char jk, int u);
 // Menambah element pada node parent
 
-nbAddr nbSearch(nbAddr root, nbType src);
+nbAddr nbSearch(nbAddr root, char src[]);
 // Mencari node dengan info ttn dan mengembalikan addressnya
 
 void nbUpgrade(nbAddr *root);
@@ -63,13 +63,8 @@ void nbLevelOrder(nbAddr root,int curLevel, int desLevel); // Levelorder travers
 /* ---------------- PRINT TREE ---------------- */
 void nbPrint(nbAddr node, char tab[]);
 
-/* ---------------- TRAVERSAL Tree ---------------- */
-//void nama_modul(); // Fungsi
-
-//void nama_modul(); // Fungsi
-
-//void nama_modul(); // Fungsi
-
-//void nama_modul(); // Fungsi
+/* ---------------- FILE Tree ---------------- */
+void nbCreateFile(nbAddr root); // Fungsi
+void nbOpenFile(nbAddr root); // Fungsi
 
 #endif

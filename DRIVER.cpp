@@ -17,9 +17,9 @@ int main(){
 	
 	//Create Root
 	nbInsert(&MyList,nbSearch(MyList.root,"RM Ibnu Jarot"), "RM Ibnu Jarot", 'L', 35);		//HB IV
-	nbInsert(&MyList,nbSearch(MyList.root,"RM Ibnu Jarot"), "RM Gathot Menol", 'L', 35);	//HB V		//First Son HB IV
-	nbInsert(&MyList,nbSearch(MyList.root,"RM Gathot Menol"), "RM Gusti Timur", 'L', 5);				//First Son HB V
-	nbInsert(&MyList,nbSearch(MyList.root,"RM Ibnu Jarot"), "RM Mustojo", 'L', 35);			//HB VI		//Next Brother HB V
+	nbInsert(&MyList,nbSearch(MyList.root,"RM Ibnu Jarot"), "RM Gathot Menol", 'L', 35);				//First Son HB V
+	nbInsert(&MyList,nbSearch(MyList.root,"RM Ibnu Jarot"), "RM Mustojo", 'L', 35);			//HB V		//First Son HB IV
+	nbInsert(&MyList,nbSearch(MyList.root,"RM Gathot Menol"), "RM Gusti Timur", 'L', 5);	//HB VI		//Next Brother HB V
 	nbInsert(&MyList,nbSearch(MyList.root,"RM Mustojo"), "RM Murtejo", 'L', 35);			//HB VII	//!First Son HB VI
 	nbInsert(&MyList,nbSearch(MyList.root,"RM Murtejo"), "RM Sujadi", 'L', 35);				//HB VIII	//!First Son HB VII
 	nbInsert(&MyList,nbSearch(MyList.root,"RM Murtejo"), "RM Prawoto", 'L', 35);						//!First Son HB VII
@@ -68,5 +68,7 @@ void Print_R_D(){
 	nbPre(MyList.root);
 	printf("\nIn Order : ");
 	nbIn(MyList.root);
+//	printf("\nLevel Order : ");
+//	nbLevelOrder(MyList.root,1,2);
 	printf("\nDEPTH: %d\n", nbDepth(MyList.root));
 }

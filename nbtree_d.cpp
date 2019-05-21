@@ -42,10 +42,10 @@ void nbInsert(nbTree *tRoot, nbAddr parent, char X[], char jk, int u){
 	}
 }
 
-nbAddr nbSearch(nbAddr root, nbType src){
+nbAddr nbSearch(nbAddr root, char src[]){
 	nbAddr nSrc;
 	if (root!=NULL){
-		if (root->info==src)
+		if (strcmp(root->info.nama, src) == 0)
 			return root;
 		else{
 			nSrc=nbSearch(root->fs,src);
@@ -110,17 +110,17 @@ void delete_node(nbTree *pTree){
 	
 	nbAddr pdel, temp, temp2, tempNb;
 	pdel=pTree->root;
-	nbType value;
+	char value[20];
 	int i=0;
 	printf("\nNode yg di delete : ");
-	scanf("%d", &value);
+	scanf("%[^\n]", value);
 	
 	if(pTree->root != NULL){
 		pdel=nbSearch(pTree->root,value);
 		if(pdel->fs != NULL){
 			temp = pdel;
 			while(temp->fs != NULL){
-				temp->info.nama = temp->fs->info.nama;
+				strcpy(temp->info.nama, temp->fs->info.nama);
 				tempNb=temp->fs->nb;
 				temp2 = temp;
 				temp=temp->fs;
@@ -150,7 +150,7 @@ void delete_node(nbTree *pTree){
 			}
 		}
 		//null_node(&pdel);
-//		free(pdel);
+		free(pdel);
 	}
 	else{
 		printf("Tree Kosong!!!");
@@ -185,7 +185,7 @@ int nbDepth(nbAddr root)
 void nbPost(nbAddr root){
 	if (root!=NULL){
 		nbPost(root->fs);
-		printf("%d ", root->info);
+		printf("%s ", root->info.nama);
 		nbPost(root->nb);
 	}
 /*
@@ -214,7 +214,7 @@ nbAddr pCur;
 
 void nbPre(nbAddr root){
 	if (root!=NULL){
-		printf("%d ", root->info);
+		printf("%s ", root->info.nama);
 		nbPre(root->fs);
 		nbPre(root->nb);
 	}
@@ -247,10 +247,10 @@ nbAddr pCur;
 void nbIn(nbAddr root){
 	if (root!=NULL){
 		nbIn(root->fs);
-		if (root->fs==NULL) printf("%d ", root->info);
+		if (root->fs==NULL) printf("%s ", root->info.nama);
 		if (root->parent !=NULL)
 			if (root->parent->fs==root)
-				printf("%d ", root->parent->info);
+				printf("%s ", root->parent->info.nama);
 		nbIn(root->nb);
 	}
 
@@ -288,7 +288,7 @@ void nbLevelOrder(nbAddr root,int curLevel, int desLevel)
 	if(root!=NULL)
 	{
 		if(curLevel==desLevel)
-			printf("%d  ",root->info);
+			printf("%s  ",root->info.nama);
 		nbLevelOrder(root->fs,curLevel+1,desLevel);
 		nbLevelOrder(root->nb,curLevel,desLevel);
 	}
@@ -299,16 +299,16 @@ void nbPrint(nbAddr node, char tab[]){
 	strcpy(tempTab, tab);
 	strcat(tempTab, "-");
 	if (node!=NULL){
-		printf("%s%d\n",tab,node->info);
+		printf("%s %s\n",tab,node->info.nama);
 		nbPrint(node->fs,tempTab);
 		nbPrint(node->nb,tab);
 	}
 }
 
-//void nama_modul(); // Fungsi
+void nbCreateFile(){
+	
+}
 
-//void nama_modul(); // Fungsi
-
-//void nama_modul(); // Fungsi
-
-//void nama_modul(); // Fungsi
+void nbOpenFile(){
+	
+}
