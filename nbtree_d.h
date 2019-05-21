@@ -57,7 +57,9 @@ void nbDelete(nbAddr *pDel, nbTree *pTree);
 int nbDepth(nbAddr root);
 // Mengukur kedalaman suatu node dari root
 
-void delete_node(nbTree *pTree);
+void nbDelNode(nbTree *pTree);
+
+void nbUpdateFS(nbTree *pTree);
 
 /* ---------------- TRAVERSAL Tree ---------------- */
 void nbPost(nbAddr root); // Postorder traversing
@@ -65,13 +67,15 @@ void nbPre(nbAddr root); // Preorder traversing
 void nbIn(nbAddr root); // Inorder traversing
 void nbLevelOrder(nbAddr root,int curLevel, int desLevel); // Levelorder traversing
 
-/* ---------------- PRINT TREE ---------------- */
+/* ---------------- PRINT Tree ---------------- */
 void nbPrint(nbAddr node, char tab[]);
 
 /* ---------------- FILE Tree ---------------- */
-void nbCreateFile(nbAddr root); // Fungsi
-void nbOpenFile(nbTree& List); // Fungsi
+void nbCreateFile(nbAddr root); // Memasukkan ke dalam file
+void nbOpenFile(nbTree& List); // Membaca file
 
+/* ---------------- Copy Struct ---------------- */
 void structcpy(nbFile& x, nbAddr pcur);
+// Copy info pcur ke record x
 
 #endif
