@@ -1,15 +1,26 @@
 [Editors]
+<<<<<<< HEAD
 Order=2,0,1
 Focused=1
+=======
+Order=1,2,0
+Focused=0
+>>>>>>> master
 [Editor_0]
 CursorCol=10
 CursorRow=44
 TopLine=1
 LeftChar=1
 [Editor_1]
+<<<<<<< HEAD
 CursorCol=7
 CursorRow=112
 TopLine=109
+=======
+CursorCol=28
+CursorRow=122
+TopLine=113
+>>>>>>> master
 LeftChar=1
 [Editor_2]
 CursorCol=7
