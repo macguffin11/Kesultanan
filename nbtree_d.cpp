@@ -106,7 +106,7 @@ void nbDelete(nbAddr *pDel, nbTree *pTree){
 	}
 }
 
-void delete_node(nbTree *pTree){
+void nbDelNode(nbTree *pTree){
 	
 	nbAddr pdel, temp, temp2, tempNb;
 	pdel=pTree->root;
@@ -155,6 +155,11 @@ void delete_node(nbTree *pTree){
 	else{
 		printf("Tree Kosong!!!");
 	}
+}
+
+void nbUpdateFS(nbTree *pTree){
+	nbAddr temp = (*pTree).root;
+	
 }
 
 int nbDepth(nbAddr root)
