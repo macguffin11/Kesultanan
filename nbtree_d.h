@@ -17,6 +17,11 @@ typedef struct nbTypeInfo{
 	int usia;
 }nbType;
 
+typedef struct tnbFile{
+	nbType	son;
+	char 	parent[20];
+}nbFile;
+
 typedef struct nbTreeNode{
 	nbType info; 	
 	nbAddr parent; 	//Parent
@@ -65,6 +70,8 @@ void nbPrint(nbAddr node, char tab[]);
 
 /* ---------------- FILE Tree ---------------- */
 void nbCreateFile(nbAddr root); // Fungsi
-void nbOpenFile(nbAddr root); // Fungsi
+void nbOpenFile(nbTree& List); // Fungsi
+
+void structcpy(nbFile& x, nbAddr pcur);
 
 #endif
