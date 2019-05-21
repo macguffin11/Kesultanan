@@ -158,8 +158,17 @@ void nbDelNode(nbTree *pTree){
 }
 
 void nbUpdateFS(nbTree *pTree){
-	nbAddr temp = (*pTree).root;
+	nbAddr temp = (*pTree).root->fs, temp2;
 	
+	if (temp->fs->info.jk != 'L'){
+		while(temp->nb != NULL && temp->nb->info.jk != 'L')
+			temp = temp->nb;
+		
+		temp2 = temp->nb;
+		temp->nb = temp2->nb;
+		temp2->nb = (*pTree).root->fs;
+		(*pTree).root->fs = temp2;
+	}
 }
 
 int nbDepth(nbAddr root)
