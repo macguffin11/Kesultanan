@@ -9,6 +9,7 @@ int i,
 void Print_R_D();
 
 int main(){
+	
 	printf("Struktur data dan Algoritma : ADT Non-Binary Tree Struktur Dinamis\n");
 	
 	//ALLOC
