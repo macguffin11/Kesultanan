@@ -160,7 +160,7 @@ void nbDelNode(nbTree *pTree){
 void nbUpdateFS(nbTree *pTree){
 	nbAddr temp = (*pTree).root->fs, temp2;
 	
-	if (temp->fs->info.jk != 'L'){
+	if (temp->info.jk == 'P'){
 		while(temp->nb != NULL && temp->nb->info.jk != 'L')
 			temp = temp->nb;
 		
