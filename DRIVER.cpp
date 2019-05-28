@@ -33,7 +33,7 @@ int main(){
 	printf("1. Input Element Tree\n");
 	printf("2. Delete Element Tree\n");
 	printf("3. Tampilkan Silsilah Keluarga\n");
-	printf("4. Tampilkan Silsilah Kesultanan\n");
+	printf("4. Pewaris Tahta Kesultanan\n");
 	printf("5. Traversal Non Binary Tree\n");
 	printf("6. Exit\n\n");
 	printf("Pilihan	:"); scanf("%d", &menu);
@@ -41,12 +41,12 @@ int main(){
 		case 1 : {
 			Input :
 			printf("\nInput Element Tree\n");
-			printf("Nama	:"); fflush(stdin); scanf("%[^\n]s", &New.nama);
-			printf("JK	:"); 	 fflush(stdin); scanf("%c", &New.jk);
-			printf("Tahun Lahir	:"); scanf("%d", &New.thn_lhr);
-			printf("Tahun Meninggal :"); scanf("%d", &New.thn_mngl);
-			printf("Tahun Menikah :"); scanf("%d", &New.menikah);
-			printf("Parent	:"); fflush(stdin); scanf("%[^\n]s", &Parent);
+			printf("Nama			: "); fflush(stdin); scanf("%[^\n]s", &New.nama);
+			printf("JK			: "); 	 fflush(stdin); scanf("%c", &New.jk);
+			printf("Tahun Lahir		: "); scanf("%d", &New.thn_lhr);
+			printf("Tahun Meninggal 	: "); scanf("%d", &New.thn_mngl);
+			printf("Pernah Menikah (1=Y/0=T): "); scanf("%d", &New.menikah);
+			printf("Parent	: "); fflush(stdin); scanf("%[^\n]s", &Parent);
 			nbInsert(&MyList, nbSearch(MyList.root, Parent), New);	
 			nbPrint(MyList.root, " ");
 			
@@ -55,7 +55,7 @@ int main(){
 			if (pilih==1){
 				goto Input;
 			} else {
-				printf("\nSave ke File ? (1 = Ya, 2 = Kembali ke Menu)\n");
+				printf("\nSave ke File ? (1 = Ya, 2 = Tidak)\n");
 				scanf("%d", &pilih);
 				if (pilih == 1)
 					nbCreateFile(MyList.root);
@@ -74,18 +74,22 @@ int main(){
 		}
 		case 3 : {	
 			system("cls");
-			printf("===Silsilah Keluarga=== \n");
+			printf("===Silsilah Keluarga Besar Kesultanan=== \n");
 			printf("\nDEPTH: %d\n\n", nbDepth(MyList.root));
 			nbPrint(MyList.root, " ");
+			printf("\nCek Sultan (Pada Tahun) = "); scanf("%d", &pilih);
+			cek_sultan(pilih, MyList.root);
+			printf("\n\n");
 			system("pause");
 			system("cls");
 			break;
 		}
 		case 4 : {
 			system("cls");
-			printf("===Silsilah Kesultanan=== \n");
+			printf("===Pewaris Tahta Kesultanan=== \n");
 			printf("\nDEPTH: %d\n\n", nbDepth(MyList.root));	
 			nbPrint(MyList.root, " ");
+			printf("\n\n");
 			system("pause");
 			system("cls");
 			break;

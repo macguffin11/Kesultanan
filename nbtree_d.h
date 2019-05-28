@@ -11,12 +11,13 @@ Last Updt : 25-5-2011
 #include <string.h>
 
 typedef struct nbTreeNode *nbAddr;
+
 typedef struct nbTypeInfo{
 	char nama[20];
 	char jk;
 	int thn_lhr;
 	int thn_mngl;
-	bool menikah;
+	int menikah;
 }nbType;
 
 typedef struct tnbFile{
@@ -85,7 +86,7 @@ void structcpy(nbFile& x, nbAddr pcur);
 
 /* ------------------Other----------------------*/
 int Hitung_Usia(int curYear, nbType Y);
-
-bool isHidup();
+void cek_sultan(int curYear, nbAddr root); 
+bool isHidup(int curYear, nbAddr pCur);
 
 #endif

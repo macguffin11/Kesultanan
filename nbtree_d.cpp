@@ -160,7 +160,8 @@ void delete_node(nbTree *pTree){
 }
 
 void nbUpdateFS(nbTree *pTree){
-	nbAddr temp = (*pTree).root->fs, temp2;
+	nbAddr 	temp = (*pTree).root->fs, 
+			temp2;
 	
 	if (temp->info.jk == 'P'){
 		while(temp->nb != NULL && temp->nb->info.jk != 'L')
@@ -313,9 +314,10 @@ void nbLevelOrder(nbAddr root,int curLevel, int desLevel)
 void nbPrint(nbAddr node, char tab[]){
 	char tempTab[255];
 	strcpy(tempTab, tab);
-	strcat(tempTab, "\t");
+	strcat(tempTab, "|\t");
 	if (node!=NULL){
-		printf("%s`--[%s]\n",tab,node->info.nama);
+		//printf("%s`--[%s] (%d ~ %d) (%d)\n",tab ,node->info.nama, node->info.thn_lhr, node->info.thn_mngl, node->info.menikah);
+		printf("%s`--[%s]\n",tab ,node->info.nama);
 		nbPrint(node->fs,tempTab);
 		nbPrint(node->nb,tab);
 	}
@@ -375,10 +377,11 @@ void nbOpenFile(nbTree& List){
 }
 
 void structcpy(nbFile& x, nbAddr pcur){
+	strcpy(x.son.nama,pcur->info.nama);
 	x.son.jk = pcur->info.jk;
 	x.son.thn_lhr = pcur->info.thn_lhr;
 	x.son.thn_mngl = pcur->info.thn_mngl;
-	strcpy(x.son.nama,pcur->info.nama);
+	x.son.menikah = pcur->info.menikah;
 	
 	if (pcur->parent != NULL){
 		strcpy(x.parent,pcur->parent->info.nama);
@@ -391,4 +394,52 @@ int Hitung_Usia(int curYear, nbType X){
 	int usia;
 	usia = curYear - X.thn_lhr;
 	return usia;
+}
+
+bool isHidup(int curYear, nbAddr pCur){
+	if (curYear >= pCur->info.thn_lhr && (curYear < pCur->info.thn_mngl || pCur->info.thn_mngl==0)){
+		return true;	
+	} else {
+		return false;
+	}
+}
+
+bool isMenikah(nbAddr pCur){
+	if (pCur->info.menikah==1){
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool isLaki(nbAddr pCur){
+	if (pCur->info.jk=='L'){
+		return true;
+	} else {
+		return false;
+	}
+}
+
+void cek_sultan(int curYear, nbAddr root){
+	nbAddr pCur, temp;
+	nbAddr sultan;
+	bool ketemu = false;
+	
+	pCur = temp = root;
+	while (pCur != NULL && !ketemu){
+		if (isHidup(curYear, pCur) && isLaki(pCur)){
+			sultan = pCur;
+			ketemu=true;
+		} else {
+			if (pCur->nb == NULL){
+				pCur = temp;
+				pCur = pCur->fs;
+				temp = pCur;
+			}else{
+				pCur = pCur->nb;
+			}
+		}
+	}
+	
+	printf("SULTAN = %s", sultan->info.nama);
 }
