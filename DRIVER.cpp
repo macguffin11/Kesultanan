@@ -8,7 +8,9 @@ nbType New;
 int i,
 	pilih,
 	menu;
-char Parent[20];
+char Parent[20],
+	cari[20],
+	status[14];
 
 int main(){
 	
@@ -31,7 +33,7 @@ int main(){
 	//MENU
 	printf("PROGRAM MENU\n");
 	printf("1. Input Element Tree\n");
-	printf("2. Delete Element Tree\n");
+	printf("2. Update Info Tree\n");
 	printf("3. Tampilkan Silsilah Keluarga\n");
 	printf("4. Pewaris Tahta Kesultanan\n");
 	printf("5. Traversal Non Binary Tree\n");
@@ -68,28 +70,53 @@ int main(){
 			break;
 		}
 		case 2 : {
-			//Delete Node
-			delete_node(&MyList);
+			//UPDATE INFO TREE
+			system("cls");
 			break;
 		}
 		case 3 : {	
 			system("cls");
 			printf("===Silsilah Keluarga Besar Kesultanan=== \n");
 			printf("\nDEPTH: %d\n\n", nbDepth(MyList.root));
-			nbPrint(MyList.root, " ");
-			printf("\nCek Sultan (Pada Tahun) = "); scanf("%d", &pilih);
-			cek_sultan(pilih, MyList.root);
-			printf("\n\n");
+			nbPrint(MyList.root, " "); 
+			printf("\n1. Tampilkan Biodata \n2. Cek Sultan \nPilih :"); scanf("%d", &pilih);
+			switch(pilih){
+				case 1 : {
+						printf("\nTampilkan Biodata \n(Masukkan Nama)	: "); fflush(stdin); scanf("%[^\n]", &cari);
+						printf("Jenis Kelamin	: %c\n", nbSearch(MyList.root, cari)->info.jk);
+						printf("Tahun Lahir	: %d\n", nbSearch(MyList.root, cari)->info.thn_lhr);
+						
+						if(nbSearch(MyList.root, cari)->info.thn_mngl == 0){
+							printf("Tahun Wafat	: [Belum Wafat]\n");
+						}else {
+							printf("Tahun Wafat	: %d\n", nbSearch(MyList.root, cari)->info.thn_mngl);
+						}
+					
+						if(nbSearch(MyList.root, cari)->info.menikah==1){
+							strcpy(status, "Sudah Menikah");
+						} else {
+							strcpy(status, "Belum Menikah");
+						}
+						printf("Status		: %s\n", status);
+					break;
+				}
+				case 2 : {
+						printf("\nCek Sultan (Pada Tahun)	= "); scanf("%d", &pilih);
+						cek_sultan(pilih, MyList.root);
+					break;
+				}
+			}
+			printf("\n");
 			system("pause");
 			system("cls");
 			break;
 		}
 		case 4 : {
 			system("cls");
-			printf("===Pewaris Tahta Kesultanan=== \n");
-			printf("\nDEPTH: %d\n\n", nbDepth(MyList.root));	
+			printf("===Pewaris Tahta Kesultanan=== \n");	
 			nbPrint(MyList.root, " ");
-			printf("\n\n");
+			printf("(RM Ibnu Jarot = Sultan ke-4)\n\n");
+			printf("Tampilkan Silsilah :\n1. Sultan ke-5 \n2. Sultan ke-6 \n3. Sultan ke-7 \n4. Sultan ke-8 \n5. Sultan ke-9 \n6. Sultan ke-10 \n7. Sultan ke-11\n\n");
 			system("pause");
 			system("cls");
 			break;
@@ -101,6 +128,7 @@ int main(){
 			nbPre(MyList.root);
 			printf("\n\nIn Order : ");
 			nbIn(MyList.root);
+			printf("\n\n");
 			system("pause");
 			system("cls");
 			break;
