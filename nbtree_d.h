@@ -14,7 +14,9 @@ typedef struct nbTreeNode *nbAddr;
 typedef struct nbTypeInfo{
 	char nama[20];
 	char jk;
-	int usia;
+	int thn_lhr;
+	int thn_mngl;
+	int thn_mnkh;
 }nbType;
 
 typedef struct tnbFile{
@@ -57,25 +59,33 @@ void nbDelete(nbAddr *pDel, nbTree *pTree);
 int nbDepth(nbAddr root);
 // Mengukur kedalaman suatu node dari root
 
-void nbDelNode(nbTree *pTree);
-
-void nbUpdateFS(nbTree *pTree);
+void delete_node(nbTree *pTree);
 
 /* ---------------- TRAVERSAL Tree ---------------- */
-void nbPost(nbAddr root); // Postorder traversing
-void nbPre(nbAddr root); // Preorder traversing
-void nbIn(nbAddr root); // Inorder traversing
-void nbLevelOrder(nbAddr root,int curLevel, int desLevel); // Levelorder traversing
+void nbPost(nbAddr root); 
+// Postorder traversing
 
-/* ---------------- PRINT Tree ---------------- */
+void nbPre(nbAddr root); 
+// Preorder traversing
+
+void nbIn(nbAddr root); 
+// Inorder traversing
+
+void nbLevelOrder(nbAddr root,int curLevel, int desLevel); 
+// Levelorder traversing
+
+/* ---------------- PRINT TREE ---------------- */
 void nbPrint(nbAddr node, char tab[]);
 
 /* ---------------- FILE Tree ---------------- */
-void nbCreateFile(nbAddr root); // Memasukkan ke dalam file
-void nbOpenFile(nbTree& List); // Membaca file
+void nbCreateFile(nbAddr root); // Fungsi
+void nbOpenFile(nbTree& List); // Fungsi
 
-/* ---------------- Copy Struct ---------------- */
 void structcpy(nbFile& x, nbAddr pcur);
-// Copy info pcur ke record x
+
+/* ------------------Other----------------------*/
+int Hitung_Usia(int curYear, nbType Y);
+
+bool isHidup();
 
 #endif

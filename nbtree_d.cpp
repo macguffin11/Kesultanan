@@ -12,7 +12,9 @@ nbAddr nbCNode(nbType Bio){
 	if (newNode != NULL){
 		strcpy(newNode->info.nama,Bio.nama);
 		newNode->info.jk=Bio.jk;
-		newNode->info.usia=Bio.usia;
+		newNode->info.thn_lhr=NULL;
+		newNode->info.thn_mngl=NULL;
+		newNode->info.thn_mnkh=NULL;
 		newNode->parent=NULL;
 		newNode->fs=NULL;
 		newNode->nb=NULL;
@@ -106,7 +108,7 @@ void nbDelete(nbAddr *pDel, nbTree *pTree){
 	}
 }
 
-void nbDelNode(nbTree *pTree){
+void delete_node(nbTree *pTree){
 	
 	nbAddr pdel, temp, temp2, tempNb;
 	pdel=pTree->root;
@@ -311,9 +313,9 @@ void nbLevelOrder(nbAddr root,int curLevel, int desLevel)
 void nbPrint(nbAddr node, char tab[]){
 	char tempTab[255];
 	strcpy(tempTab, tab);
-	strcat(tempTab, "-");
+	strcat(tempTab, "\t");
 	if (node!=NULL){
-		printf("%s [%s]\n",tab,node->info.nama);
+		printf("%s`--[%s]\n",tab,node->info.nama);
 		nbPrint(node->fs,tempTab);
 		nbPrint(node->nb,tab);
 	}
@@ -374,7 +376,8 @@ void nbOpenFile(nbTree& List){
 
 void structcpy(nbFile& x, nbAddr pcur){
 	x.son.jk = pcur->info.jk;
-	x.son.usia = pcur->info.usia;
+	x.son.thn_lhr = pcur->info.thn_lhr;
+	x.son.thn_mngl = pcur->info.thn_mngl;
 	strcpy(x.son.nama,pcur->info.nama);
 	
 	if (pcur->parent != NULL){
@@ -382,4 +385,10 @@ void structcpy(nbFile& x, nbAddr pcur){
 	}else{
 		strcpy(x.parent,pcur->info.nama);
 	}
+}
+
+int Hitung_Usia(int curYear, nbType X){
+	int usia;
+	usia = curYear - X.thn_lhr;
+	return usia;
 }
