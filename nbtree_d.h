@@ -16,7 +16,7 @@ typedef struct nbTypeInfo{
 	char jk;
 	int thn_lhr;
 	int thn_mngl;
-	int thn_mnkh;
+	bool menikah;
 }nbType;
 
 typedef struct tnbFile{

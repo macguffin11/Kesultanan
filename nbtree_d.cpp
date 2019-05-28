@@ -12,9 +12,9 @@ nbAddr nbCNode(nbType Bio){
 	if (newNode != NULL){
 		strcpy(newNode->info.nama,Bio.nama);
 		newNode->info.jk=Bio.jk;
-		newNode->info.thn_lhr=NULL;
-		newNode->info.thn_mngl=NULL;
-		newNode->info.thn_mnkh=NULL;
+		newNode->info.thn_lhr=Bio.thn_lhr;
+		newNode->info.thn_mngl=Bio.thn_mngl;
+		newNode->info.menikah=Bio.menikah;
 		newNode->parent=NULL;
 		newNode->fs=NULL;
 		newNode->nb=NULL;
@@ -364,7 +364,7 @@ void nbOpenFile(nbTree& List){
 	if ((dt_tr=fopen("File_Tree.DAT", "rb"))==NULL)
 	{
 		printf ("File tidak dapat dibuka\n");
-		exit(1);
+		//exit(1);
 	}
 	
 	while (fread(&dt_tree, sizeof(nbFile), 1, dt_tr) == 1)

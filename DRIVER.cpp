@@ -45,7 +45,7 @@ int main(){
 			printf("JK	:"); 	 fflush(stdin); scanf("%c", &New.jk);
 			printf("Tahun Lahir	:"); scanf("%d", &New.thn_lhr);
 			printf("Tahun Meninggal :"); scanf("%d", &New.thn_mngl);
-			printf("Tahun Menikah :"); scanf("%d", &New.thn_mnkh);
+			printf("Tahun Menikah :"); scanf("%d", &New.menikah);
 			printf("Parent	:"); fflush(stdin); scanf("%[^\n]s", &Parent);
 			nbInsert(&MyList, nbSearch(MyList.root, Parent), New);	
 			nbPrint(MyList.root, " ");
@@ -55,7 +55,13 @@ int main(){
 			if (pilih==1){
 				goto Input;
 			} else {
+				printf("\nSave ke File ? (1 = Ya, 2 = Kembali ke Menu)\n");
+				scanf("%d", &pilih);
+				if (pilih == 1)
+					nbCreateFile(MyList.root);
 				system("cls");
+				free(MyList.root);
+				MyList.root=NULL;
 				return main();
 			}
 				
@@ -96,7 +102,6 @@ int main(){
 			break;
 		}
 		case 6 : {
-			nbCreateFile(MyList.root);
 			exit(0);
 			break;
 		}
